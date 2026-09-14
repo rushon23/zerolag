@@ -1959,3 +1959,9 @@ footer {
   animation: elegant-wave 30s linear infinite;
   will-change: transform;
 }
+@keyframes drawPath {
+  0% { stroke-dashoffset: 1500; opacity: 0; }
+  10% { opacity: 0.6; }
+  90% { opacity: 0.6; }
+  100% { stroke-dashoffset: 0; opacity: 0; }
+}

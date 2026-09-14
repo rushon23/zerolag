@@ -86,6 +86,12 @@ const config: Config = {
           "0%": { opacity: "1" },
           "100%": { opacity: "0", visibility: "hidden" },
         },
+        "drawPath": {
+          "0%": { strokeDashoffset: "1500", opacity: "0" },
+          "10%": { opacity: "1" },
+          "90%": { opacity: "1" },
+          "100%": { strokeDashoffset: "0", opacity: "0" },
+        },
         "fade-in": {
           "0%": { opacity: "0" },
           "100%": { opacity: "1" },

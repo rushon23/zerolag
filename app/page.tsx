@@ -22,7 +22,7 @@ export default function Home() {
         </div>
 
         {/* About Section - Slides up over hero naturally using CSS margins */}
-        <div className="relative min-h-screen z-20 bg-[#0A1428] pt-24" style={{ marginTop: "100vh" }}>
+        <div className="relative min-h-screen z-20 bg-[#0A1428] pt-24">
           <About />
         </div>
       </div>
