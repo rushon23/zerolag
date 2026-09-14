@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
+import NextImage from "next/image"
 import { motion } from "framer-motion"
 import { Linkedin, Github, Twitter, Instagram, Globe } from "lucide-react"
 
@@ -82,17 +83,19 @@ function TeamMember({
             </div>
           )}
 
-          {/* Actual image with standard img tag for maximum compatibility */}
+          {/* Actual image using Next.js Image for reliable loading */}
           {!imageError && (
-            <img
-              src={safePhotoUrl || "/placeholder.svg"}
+            <NextImage
+              src={safePhotoUrl}
               alt={`${name || "Team member"}`}
-              className={`w-full h-full object-cover object-center transition-opacity duration-300 ${
+              fill
+              className={`object-cover object-center transition-opacity duration-300 ${
                 imageLoaded ? "opacity-100" : "opacity-0"
               }`}
               onError={handleImageError}
               onLoad={handleImageLoad}
-              loading="lazy" // Use lazy loading for non-critical images
+              priority
+              unoptimized
             />
           )}
 
