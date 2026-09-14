@@ -1,215 +1,160 @@
 "use client"
 
-import type { ReactNode } from "react"
 import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import {
-  ArrowLeft,
-  ArrowRight,
-  Layers,
-  Handshake,
-  Construction,
-  Server,
-  RefreshCw,
-  LifeBuoy,
-} from "lucide-react"
-
-// Custom Animated Icon Component - Size has been reduced
-const AnimatedProcessIcon = ({ children }: { children: ReactNode }) => (
-  <div className="relative w-20 h-20"> {/* REDUCED SIZE */}
-    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="absolute inset-0">
-      <circle cx="50" cy="50" r="48" stroke="url(#paint0_linear_153_12)" strokeWidth="2"/>
-      <circle cx="20" cy="20" r="3" fill="#0CCEA9" fillOpacity="0.5"/>
-      <circle cx="80" cy="80" r="3" fill="#0CCEA9" fillOpacity="0.5"/>
-      <circle cx="20" cy="80" r="3" fill="#0CCEA9" fillOpacity="0.5"/>
-      <circle cx="80" cy="20" r="3" fill="#0CCEA9" fillOpacity="0.5"/>
-      <defs>
-        <linearGradient id="paint0_linear_153_12" x1="50" y1="0" x2="50" y2="100" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#0CCEA9" stopOpacity="0.8"/>
-          <stop offset="1" stopColor="#0CCEA9" stopOpacity="0"/>
-        </linearGradient>
-      </defs>
-    </svg>
-    <motion.div
-      className="absolute inset-0 flex items-center justify-center"
-      animate={{ rotate: 360 }}
-      transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-    >
-        {children}
-    </motion.div>
-  </div>
-);
-
+import { ArrowLeft, ArrowRight } from "lucide-react"
 
 const steps = [
   {
-    icon: <Layers size={28} className="text-primary" />, // Icon size adjusted for smaller container
+    number: "01",
     title: "Discovery & Strategy",
     description: "We engage in a comprehensive discussion to understand your project goals, ensuring a clear vision and setting the foundation for success.",
+    highlight: "Goals → Vision → Foundation",
   },
   {
-    icon: <Handshake size={28} className="text-primary" />,
+    number: "02",
     title: "Scope & Agreements",
     description: "Once the scope is defined, we establish transparent agreements and outline clear terms to ensure a smooth, reliable collaboration.",
+    highlight: "Scope → Terms → Trust",
   },
   {
-    icon: <Construction size={28} className="text-primary" />,
+    number: "03",
     title: "MVP Construction",
     description: "Our skilled team kicks off rapid MVP construction, following agile sprints for adaptability and timely delivery of an impactful product.",
+    highlight: "Sprints → Agile → Delivery",
   },
   {
-    icon: <Server size={28} className="text-primary" />,
+    number: "04",
     title: "On-Time Deployment",
     description: "We pride ourselves on on-time deployment, ensuring your fully functional MVP reaches the market promptly and is ready for user interaction.",
+    highlight: "Launch → Market → Live",
   },
   {
-    icon: <RefreshCw size={28} className="text-primary" />,
+    number: "05",
     title: "Continuous Improvement",
-    description: "Based on user feedback and market response, we iteratively refine and enhance your MVP, ensuring its ongoing success and relevance.",
+    description: "Based on user feedback and market response, we iteratively refine and enhance your product, ensuring its ongoing success and relevance.",
+    highlight: "Feedback → Refine → Grow",
   },
   {
-    icon: <LifeBuoy size={28} className="text-primary" />,
+    number: "06",
     title: "Maintenance & Support",
     description: "We provide dedicated, ongoing support to ensure your application runs flawlessly and to address any of your future needs.",
+    highlight: "Monitor → Maintain → Support",
   },
 ]
 
 export default function ProcessSimple() {
   const [activeIndex, setActiveIndex] = useState(0)
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null)
-
-  const AUTOPLAY_INTERVAL = 2000
+  const timerRef = useRef<NodeJS.Timeout | null>(null)
 
   const goToNext = () => setActiveIndex((prev) => (prev + 1) % steps.length)
   const goToPrev = () => setActiveIndex((prev) => (prev - 1 + steps.length) % steps.length)
 
+  // Auto-advance every 3.5s; reset on manual nav
   useEffect(() => {
-    if (timeoutRef.current) clearTimeout(timeoutRef.current)
-    timeoutRef.current = setTimeout(goToNext, AUTOPLAY_INTERVAL)
-    return () => {
-      if (timeoutRef.current) clearTimeout(timeoutRef.current)
-    }
+    if (timerRef.current) clearTimeout(timerRef.current)
+    timerRef.current = setTimeout(goToNext, 3500)
+    return () => { if (timerRef.current) clearTimeout(timerRef.current) }
   }, [activeIndex])
 
   return (
-    <section id="process" className="py-20 md:py-28 bg-[#0A101E] overflow-hidden font-sans">
-      <div className="container mx-auto px-0 md:px-6">
-        <div className="text-center max-w-3xl mx-auto mb-16 px-4">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
+    <section id="process" className="py-20 md:py-28 bg-[#0A101E] text-white overflow-hidden">
+      <div className="container mx-auto px-4 md:px-6">
+
+        {/* Header */}
+        <div className="text-center max-w-2xl mx-auto mb-16">
+          <span className="inline-block py-1 px-3 rounded-full bg-primary/10 text-primary text-sm font-semibold border border-primary/20 mb-4 tracking-wide uppercase">
+            Our Process
+          </span>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Our Path to <span className="text-primary">Excellence</span>
           </h2>
-          <p className="text-gray-300 text-lg">
+          <p className="text-gray-400 text-lg">
             A disciplined, agile process to transform ambitious ideas into market-leading digital products.
           </p>
         </div>
 
-        <div className="relative w-full h-[550px] md:h-[600px] flex items-center justify-center">
-          <div className="relative w-full h-full" style={{ perspective: "1200px" }}>
-            
-            <AnimatePresence>
-              {activeIndex !== null && (
-                <motion.div
-                  key={activeIndex}
-                  className="absolute inset-0 flex items-center justify-center"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.8 }}
-                >
-                  <motion.div
-                    className="absolute w-full h-96 max-w-2xl bg-primary/10 rounded-full"
-                    style={{ filter: "blur(120px)" }}
-                    animate={{ scale: [1, 1.05, 1] }}
-                    transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                  />
-                </motion.div>
-              )}
-            </AnimatePresence>
-
-            {steps.map((step, index) => {
-              const offset = index - activeIndex
-              const isVisible = Math.abs(offset) <= 2
-
-              const scale = offset === 0 ? 1 : 0.85
-              const zIndex = steps.length - Math.abs(offset)
-              const translateX = offset * 50
-              const rotateY = offset * 35
-
-              return (
-                <motion.div
-                  key={index}
-                  className="absolute w-full h-full flex items-center justify-center"
-                  style={{ transformStyle: "preserve-3d", zIndex: zIndex }}
-                  initial={{ opacity: 0 }}
-                  animate={{
-                    opacity: isVisible ? 1 : 0,
-                    transform: `translateX(${translateX}%) scale(${scale}) rotateY(${rotateY}deg)`,
-                  }}
-                  transition={{ type: "spring", stiffness: 100, damping: 20 }}
-                >
-                  <div className={`
-                    relative w-[90%] max-w-lg h-[500px] rounded-2xl p-px
-                    transition-all duration-300
-                    ${offset === 0 ? "shimmer-border" : "bg-white/5"}
-                  `}>
-                    <div className={`
-                      relative w-full h-full
-                      bg-[#0F172A] sm:bg-[#0F172A]/60 sm:backdrop-blur-2xl
-                      rounded-[15px] p-8 flex flex-col overflow-hidden
-                    `}>
-                      
-                      {/* 1. NEW LAYERED HEADER */}
-                      <header className="relative flex items-center h-20">
-                        <p className="absolute right-0 top-1/2 -translate-y-1/2 text-[110px] font-black text-white/10 select-none pointer-events-none">
-                          0{index + 1}
-                        </p>
-                        <h3 className="relative z-10 text-2xl font-bold text-white">
-                          {step.title}
-                        </h3>
-                      </header>
-                      
-                      {/* 2. CENTRAL ANIMATED ICON (SMALLER) */}
-                      <div className="flex-grow flex items-center justify-center my-4">
-                        <AnimatePresence>
-                          {offset === 0 && (
-                            <motion.div
-                                key={index}
-                                className="relative flex items-center justify-center"
-                                initial={{ scale: 0.5, opacity: 0 }}
-                                animate={{ scale: 1, opacity: 1 }}
-                                transition={{ type: 'spring', stiffness: 260, damping: 20, delay: 0.2 }}
-                            >
-                                <AnimatedProcessIcon>{step.icon}</AnimatedProcessIcon>
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </div>
-
-                      {/* 3. FOOTER WITH LARGER FONT */}
-                      <footer className="text-left">
-                        <p className="text-gray-300 text-lg leading-relaxed">{step.description}</p>
-                      </footer>
-
-                    </div>
-                  </div>
-                </motion.div>
-              )
-            })}
-          </div>
-
-          <button onClick={goToPrev} className="absolute top-1/2 -translate-y-1/2 left-0 sm:left-4 z-30 p-2 rounded-full text-white bg-white/10 hover:bg-white/20 transition-colors" aria-label="Previous"><ArrowLeft /></button>
-          <button onClick={goToNext} className="absolute top-1/2 -translate-y-1/2 right-0 sm:right-4 z-30 p-2 rounded-full text-white bg-white/10 hover:bg-white/20 transition-colors" aria-label="Next"><ArrowRight /></button>
-        </div>
-        
-        <div className="flex justify-center gap-3 mt-12">
-          {steps.map((_, index) => (
+        {/* Step indicator strip */}
+        <div className="flex items-center justify-center gap-0 mb-12 max-w-3xl mx-auto">
+          {steps.map((s, i) => (
             <button
-              key={index}
-              onClick={() => setActiveIndex(index)}
-              className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${activeIndex === index ? "bg-primary scale-150" : "bg-gray-600 hover:bg-gray-500"}`}
-              aria-label={`Go to step ${index + 1}`}
-            />
+              key={i}
+              onClick={() => setActiveIndex(i)}
+              className="flex-1 flex flex-col items-center gap-2 group"
+            >
+              {/* Connector line + dot */}
+              <div className="w-full flex items-center">
+                {/* Left line */}
+                <div className={`flex-1 h-px transition-colors duration-300 ${i <= activeIndex ? "bg-primary" : "bg-gray-700"}`} />
+                {/* Dot */}
+                <div className={`w-8 h-8 rounded-full border-2 flex items-center justify-center text-xs font-bold transition-all duration-300 shrink-0
+                  ${i === activeIndex
+                    ? "border-primary bg-primary text-black scale-125"
+                    : i < activeIndex
+                    ? "border-primary bg-primary/20 text-primary"
+                    : "border-gray-600 text-gray-500"
+                  }`}>
+                  {i < activeIndex ? "✓" : i + 1}
+                </div>
+                {/* Right line */}
+                <div className={`flex-1 h-px transition-colors duration-300 ${i < activeIndex ? "bg-primary" : "bg-gray-700"}`} />
+              </div>
+              {/* Step label hidden on mobile, shown md+ */}
+              <span className={`hidden md:block text-xs font-medium transition-colors duration-300 ${i === activeIndex ? "text-primary" : "text-gray-600"}`}>
+                {s.number}
+              </span>
+            </button>
           ))}
         </div>
+
+        {/* Active card */}
+        <div className="relative max-w-2xl mx-auto">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeIndex}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.35, ease: "easeOut" }}
+              className="bg-[#0d1d38] border border-gray-800 rounded-2xl p-10 text-center"
+            >
+              {/* Giant step number */}
+              <div className="text-[80px] font-black leading-none text-primary/15 select-none mb-2">
+                {steps[activeIndex].number}
+              </div>
+
+              {/* Highlight tag */}
+              <div className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 text-primary text-xs font-semibold px-4 py-1.5 rounded-full mb-6 tracking-wide">
+                {steps[activeIndex].highlight}
+              </div>
+
+              <h3 className="text-2xl md:text-3xl font-bold text-white mb-5">
+                {steps[activeIndex].title}
+              </h3>
+
+              <p className="text-gray-400 text-lg leading-relaxed max-w-lg mx-auto">
+                {steps[activeIndex].description}
+              </p>
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Prev / Next */}
+          <button
+            onClick={goToPrev}
+            className="absolute top-1/2 -translate-y-1/2 -left-14 w-10 h-10 rounded-full bg-gray-800 border border-gray-700 flex items-center justify-center text-gray-300 hover:text-primary hover:border-primary/50 transition-colors"
+            aria-label="Previous step"
+          >
+            <ArrowLeft size={18} />
+          </button>
+          <button
+            onClick={goToNext}
+            className="absolute top-1/2 -translate-y-1/2 -right-14 w-10 h-10 rounded-full bg-gray-800 border border-gray-700 flex items-center justify-center text-gray-300 hover:text-primary hover:border-primary/50 transition-colors"
+            aria-label="Next step"
+          >
+            <ArrowRight size={18} />
+          </button>
+        </div>
+
       </div>
     </section>
   )
