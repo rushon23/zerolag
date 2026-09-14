@@ -1,7 +1,20 @@
+"use client"
+
+import { useState } from "react"
 import { Calendar, CheckCircle } from "lucide-react"
+import { motion } from "framer-motion"
 import styles from "./hero.module.css"
 
 export default function Hero() {
+  const [isAnimating, setIsAnimating] = useState(false)
+
+  const triggerCalendarShake = () => {
+    if (!isAnimating) {
+      setIsAnimating(true)
+      setTimeout(() => setIsAnimating(false), 700)
+    }
+  }
+
   return (
     <div className={styles.hero}>
       {/* Pure CSS animated lines — GPU only, no JS */}
@@ -26,13 +39,27 @@ export default function Hero() {
           <strong className={styles.highlight}>intelligent</strong> software solutions.
         </p>
 
+        {/* Original animated Schedule a Call button */}
         <a
           href="https://cal.com/zerolag/30min"
           target="_blank"
           rel="noopener noreferrer"
           className={styles.cta}
+          onMouseEnter={triggerCalendarShake}
+          onTouchStart={triggerCalendarShake}
         >
-          <Calendar size={18} />
+          <motion.div
+            animate={
+              isAnimating
+                ? {
+                    rotate: [0, -10, 10, -10, 10, 0],
+                    transition: { duration: 0.7, ease: "easeInOut" },
+                  }
+                : { rotate: 0 }
+            }
+          >
+            <Calendar size={18} />
+          </motion.div>
           Schedule a Call
         </a>
 

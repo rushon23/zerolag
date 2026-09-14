@@ -517,7 +517,7 @@ export default function EnhancedServices() {
     return (
       <div
         ref={svgContainerRef}
-        className="relative h-[420px] flex items-center justify-center overflow-hidden cursor-none max-w-6xl mx-auto"
+        className="relative h-[420px] flex items-center justify-center overflow-hidden max-w-6xl mx-auto"
       >
         {/* Background canvas for dynamic effects */}
         <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none z-0 max-w-full max-h-full" style={{display: 'block', width: '100%', height: '100%', borderRadius: '0.75rem'}} />
@@ -902,7 +902,7 @@ export default function EnhancedServices() {
   return (
     <section
       id="services"
-      className="py-20 lg:py-32 xl:py-40 bg-[#0f1a25] text-white relative overflow-hidden cursor-none"
+      className="py-20 lg:py-32 xl:py-40 bg-[#0f1a25] text-white relative overflow-hidden"
       ref={containerRef}
     >
       {/* Background patterns & Gradients */}
