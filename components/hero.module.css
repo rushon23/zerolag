@@ -1,0 +1,163 @@
+/* =============================================
+   HERO — Section 1
+   Full viewport, dark blue bg, sticky
+   ============================================= */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0A1428;
+  overflow: hidden;
+}
+
+/* ── Animated Lines ─────────────────────────── */
+.lines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.line {
+  position: absolute;
+  left: -20%;
+  top: 50%;
+  width: 160%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    #0CCEA9 50%,
+    transparent 100%
+  );
+  opacity: 0;
+  transform: rotate(calc(-20deg + var(--i) * 5deg)) translateY(calc(var(--i) * 40px - 140px));
+  animation: sweep 6s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 0.4s);
+  /* GPU layer */
+  will-change: opacity, transform;
+}
+
+@keyframes sweep {
+  0%   { opacity: 0;   transform: rotate(calc(-20deg + var(--i) * 5deg)) translateY(calc(var(--i) * 40px - 140px)) translateX(-40px); }
+  20%  { opacity: calc(0.06 + var(--i) * 0.04); }
+  50%  { opacity: calc(0.12 + var(--i) * 0.04); transform: rotate(calc(-20deg + var(--i) * 5deg)) translateY(calc(var(--i) * 40px - 140px)) translateX(40px); }
+  80%  { opacity: calc(0.06 + var(--i) * 0.04); }
+  100% { opacity: 0;   transform: rotate(calc(-20deg + var(--i) * 5deg)) translateY(calc(var(--i) * 40px - 140px)) translateX(-40px); }
+}
+
+/* ── Fade to dark at the bottom ─────────────── */
+.fadeOut {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(to bottom, transparent, #0A1428);
+  z-index: 2;
+}
+
+/* ── Content ────────────────────────────────── */
+.content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 28px;
+  padding: 0 24px;
+  max-width: 780px;
+}
+
+.headline {
+  font-size: clamp(2.6rem, 7vw, 5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  /* Animate in on page load */
+  animation: fadeUp 0.8s ease forwards;
+  opacity: 0;
+  animation-delay: 0.1s;
+}
+
+.accent {
+  color: #0CCEA9;
+}
+
+.subline {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  color: #94a3b8;
+  max-width: 560px;
+  line-height: 1.7;
+  animation: fadeUp 0.8s ease forwards;
+  opacity: 0;
+  animation-delay: 0.3s;
+}
+
+.highlight {
+  color: #0CCEA9;
+  font-weight: 600;
+}
+
+/* ── CTA button ─────────────────────────────── */
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 32px;
+  background: linear-gradient(135deg, #0CCEA9, #0a9e82);
+  color: #000;
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 0 24px rgba(12, 206, 169, 0.35);
+  animation: fadeUp 0.8s ease forwards;
+  opacity: 0;
+  animation-delay: 0.5s;
+  will-change: transform;
+}
+.cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 36px rgba(12, 206, 169, 0.55);
+}
+.cta:active {
+  transform: translateY(0);
+}
+
+/* ── Pills ──────────────────────────────────── */
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  animation: fadeUp 0.8s ease forwards;
+  opacity: 0;
+  animation-delay: 0.65s;
+}
+
+.pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.875rem;
+  color: #94a3b8;
+}
+.pill svg {
+  color: #0CCEA9;
+  flex-shrink: 0;
+}
+
+/* ── Shared fade-up keyframe ────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

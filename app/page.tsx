@@ -11,55 +11,53 @@ import Contact from "@/components/contact"
 
 export default function Home() {
   return (
-    <main className="min-h-screen grid-pattern animate-fade-in relative">
+    <main>
       <MinimalNavbar />
 
-      {/* Sticky Parallax Container */}
-      <div className="relative w-full">
-        {/* Hero Section - Stays sticky while user scrolls past 100vh */}
-        <div className="sticky top-0 left-0 w-full h-screen z-10">
+      {/*
+        ┌──────────────────────────────────────────┐
+        │  PARALLAX CONTAINER                      │
+        │                                          │
+        │  Hero is sticky — it stays behind.       │
+        │  About scrolls naturally on top of it.   │
+        │                                          │
+        │  The container is exactly 2×100vh tall,  │
+        │  so Hero stays visible for exactly one   │
+        │  viewport before About fully covers it.  │
+        └──────────────────────────────────────────┘
+      */}
+      <div style={{ position: "relative", height: "200vh" }}>
+        {/* Section 1: sticky — glued to top until About has scrolled past */}
+        <div style={{
+          position: "sticky",
+          top: 0,
+          height: "100vh",
+          zIndex: 1,
+        }}>
           <Hero />
         </div>
 
-        {/* About Section - Slides up over hero naturally using CSS margins */}
-        <div className="relative min-h-screen z-20 bg-[#0A1428] pt-24">
+        {/* Section 2: sits at the bottom half of the 200vh container.
+            As the user scrolls, it slides up and covers the sticky Hero. */}
+        <div style={{
+          position: "absolute",
+          top: "100vh",
+          left: 0,
+          right: 0,
+          zIndex: 2,
+        }}>
           <About />
         </div>
       </div>
 
-      {/* The rest of the sections */}
-      <div className="relative z-20 bg-[#0A1428]">
-        {/* 3. Previous Projects Section */}
-        <section id="projects">
-          <PreviousProjects />
-        </section>
-
-        {/* 4. Services Section */}
-        <section id="services" className="relative z-30">
-          <EnhancedServices />
-        </section>
-
-        {/* 5. Testimonials Section */}
-        <section id="testimonials">
-          <TestimonialsSection />
-        </section>
-
-        {/* 6. Process Section */}
-        <section id="process">
-          <ProcessSimple />
-        </section>
-
-        {/* 7. Team Section */}
-        <section id="team">
-          <Team />
-        </section>
-
-        {/* 8. Contact Section */}
-        <section id="contact">
-          <Contact />
-        </section>
-
-        {/* 9. Footer */}
+      {/* All remaining sections scroll normally below */}
+      <div style={{ position: "relative", zIndex: 2, background: "#0A1428" }}>
+        <section id="projects"><PreviousProjects /></section>
+        <section id="services"><EnhancedServices /></section>
+        <section id="testimonials"><TestimonialsSection /></section>
+        <section id="process"><ProcessSimple /></section>
+        <section id="team"><Team /></section>
+        <section id="contact"><Contact /></section>
         <Footer />
       </div>
     </main>

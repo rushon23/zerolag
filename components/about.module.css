@@ -1,0 +1,176 @@
+/* =============================================
+   ABOUT / WHY CHOOSE ZEROLAG — Section 2
+   Solid bg — slides over Hero via sticky
+   ============================================= */
+.about {
+  background-color: #0A1428;
+  color: #fff;
+  padding: 80px 24px 100px;
+}
+
+/* ── Header ─────────────────────────────────── */
+.header {
+  max-width: 700px;
+  margin: 0 auto 64px;
+  text-align: center;
+}
+
+.badge {
+  display: inline-block;
+  padding: 6px 16px;
+  background: rgba(12, 206, 169, 0.12);
+  color: #0CCEA9;
+  border: 1px solid rgba(12, 206, 169, 0.25);
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: #fff;
+  margin: 0 0 20px;
+}
+
+.accent {
+  color: #0CCEA9;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #64748b;
+  line-height: 1.75;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+/* ── 2×2 Grid ───────────────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  max-width: 1100px;
+  margin: 0 auto 80px;
+}
+
+/* ── Card ───────────────────────────────────── */
+.card {
+  background: #0d1d38;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  padding: 32px;
+  transition: border-color 0.25s ease, transform 0.25s ease;
+  will-change: transform;
+}
+
+.card:hover {
+  border-color: rgba(12, 206, 169, 0.35);
+  transform: translateY(-4px);
+}
+
+.cardIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  background: rgba(12, 206, 169, 0.1);
+  border-radius: 12px;
+  color: #0CCEA9;
+  margin-bottom: 20px;
+}
+
+.cardTitle {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 12px;
+}
+
+.cardDesc {
+  font-size: 0.95rem;
+  color: #64748b;
+  line-height: 1.65;
+  margin: 0 0 20px;
+}
+
+.benefits {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.benefits li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.875rem;
+  color: #94a3b8;
+}
+
+.benefits li svg {
+  color: #0CCEA9;
+  flex-shrink: 0;
+}
+
+/* ── CTA strip ──────────────────────────────── */
+.cta {
+  max-width: 700px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, #0d1d38, #0f2340);
+  border: 1px solid rgba(12, 206, 169, 0.15);
+  border-radius: 24px;
+  padding: 56px 40px;
+  text-align: center;
+}
+
+.cta h3 {
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 800;
+  color: #fff;
+  margin: 0 0 14px;
+}
+
+.cta p {
+  color: #64748b;
+  margin: 0 auto 32px;
+  max-width: 480px;
+  line-height: 1.7;
+}
+
+.ctaBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 36px;
+  background: #0CCEA9;
+  color: #000;
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 0 24px rgba(12, 206, 169, 0.35);
+  will-change: transform;
+}
+
+.ctaBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 40px rgba(12, 206, 169, 0.55);
+}
+
+/* ── Mobile adjustments ─────────────────────── */
+@media (max-width: 640px) {
+  .cta {
+    padding: 40px 24px;
+  }
+}
