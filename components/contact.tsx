@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { Mail, Phone, MapPin } from "lucide-react"
+import { Mail, MapPin } from "lucide-react"
 import { useState, useEffect } from "react" // Add useEffect to the import
 import { submitContactForm } from "@/app/actions/contact-form" // Assuming this path is correct
 
@@ -289,20 +289,6 @@ export default function Contact() {
                     </div>
                   </div>
 
-                  {/* Phone */}
-                  <div className="flex items-start group">
-                    <div className="bg-primary/10 p-3 rounded-lg mr-4 transition-colors group-hover:bg-primary/20">
-                      <Phone className="h-6 w-6 text-primary" />
-                    </div>
-                    <div>
-                      <h4 className="text-lg font-medium text-white mb-1">Phone</h4>
-                      <div className="space-y-1">
-                        <p className="text-gray-400">+91 8310674815</p>
-                        <p className="text-gray-400">+91 9353936780</p>
-                        <p className="text-gray-400">+91 8618217545</p>
-                      </div>
-                    </div>
-                  </div>
 
                   {/* Office */}
                   <div className="flex items-start group">
